@@ -12,6 +12,10 @@
 		220A61221FC8F4430064E282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220A61201FC8F4430064E282 /* Main.storyboard */; };
 		220A61241FC8F4430064E282 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 220A61231FC8F4430064E282 /* Assets.xcassets */; };
 		220A61271FC8F4430064E282 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220A61251FC8F4430064E282 /* LaunchScreen.storyboard */; };
+		220A612F1FC8FDE80064E282 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A612E1FC8FDE80064E282 /* MainTableViewController.swift */; };
+		220A61311FC9005E0064E282 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A61301FC9005E0064E282 /* DetailTableViewController.swift */; };
+		2293A31E1FCAE804005ECB8F /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293A31D1FCAE804005ECB8F /* ToolBarView.swift */; };
+		2293A3201FCAE82C005ECB8F /* ToolBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2293A31F1FCAE82C005ECB8F /* ToolBarView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		220A61231FC8F4430064E282 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		220A61261FC8F4430064E282 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		220A61281FC8F4430064E282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		220A612E1FC8FDE80064E282 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		220A61301FC9005E0064E282 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		2293A31D1FCAE804005ECB8F /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		2293A31F1FCAE82C005ECB8F /* ToolBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolBarView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 			children = (
 				220A611C1FC8F4430064E282 /* AppDelegate.swift */,
 				220A611E1FC8F4430064E282 /* ViewController.swift */,
+				220A612E1FC8FDE80064E282 /* MainTableViewController.swift */,
+				220A61301FC9005E0064E282 /* DetailTableViewController.swift */,
+				2293A31D1FCAE804005ECB8F /* ToolBarView.swift */,
+				2293A31F1FCAE82C005ECB8F /* ToolBarView.xib */,
 				220A61201FC8F4430064E282 /* Main.storyboard */,
 				220A61231FC8F4430064E282 /* Assets.xcassets */,
 				220A61251FC8F4430064E282 /* LaunchScreen.storyboard */,
@@ -125,6 +137,7 @@
 			files = (
 				220A61271FC8F4430064E282 /* LaunchScreen.storyboard in Resources */,
 				220A61241FC8F4430064E282 /* Assets.xcassets in Resources */,
+				2293A3201FCAE82C005ECB8F /* ToolBarView.xib in Resources */,
 				220A61221FC8F4430064E282 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,7 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220A61311FC9005E0064E282 /* DetailTableViewController.swift in Sources */,
 				220A611F1FC8F4430064E282 /* ViewController.swift in Sources */,
+				2293A31E1FCAE804005ECB8F /* ToolBarView.swift in Sources */,
+				220A612F1FC8FDE80064E282 /* MainTableViewController.swift in Sources */,
 				220A611D1FC8F4430064E282 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,12 +227,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -262,10 +279,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -277,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8WBJVGLUJ4;
 				INFOPLIST_FILE = SwitchBetweenCustomToolBarAndTabBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sinkingsoul.SwitchBetweenCustomToolBarAndTabBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8WBJVGLUJ4;
 				INFOPLIST_FILE = SwitchBetweenCustomToolBarAndTabBar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sinkingsoul.SwitchBetweenCustomToolBarAndTabBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
