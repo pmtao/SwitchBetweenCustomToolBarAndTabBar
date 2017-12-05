@@ -8,17 +8,22 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController {
+class DetailTableViewController: UITableViewController, TableViewStaticCellDataModel {
     // MARK: 1.--@IBOutlet属性定义-----------👇
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var authorsLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
     
     // MARK: 2.--实例属性定义----------------👇
-    var bookDetail = ["name": "","author": "", "press": ""]
+    var staticTableDataModel = BookDetailCellModel()
+    var sectionsDataModel: [SectionModel] = []
     
     // MARK: 3.--视图生命周期----------------👇
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.allowsMultipleSelectionDuringEditing = true // 允许编辑模式下多选
+        setSectionDataModel() // 设置 section 数据模型
+        configureCell(model: self.staticTableDataModel) // 配置 Cell 显示内容
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,6 +31,19 @@ class DetailTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     // MARK: 4.--处理主逻辑-----------------👇
+    /// 设置 section 数据模型
+    func setSectionDataModel() {
+        sectionsDataModel = [SectionModel(headerTitle: nil,
+                                          footerTitle: nil,
+                                          cellCount: 3)]
+    }
+    
+    /// 配置静态 Cell 显示内容
+    func configureCell<T: BookDetailCellProtocol>(model: T) {
+        nameLabel?.text = model.title
+        authorsLabel?.text = model.authors
+        publisherLabel?.text = model.publisher
+    }
     
     // MARK: 5.--辅助函数-------------------👇
     
@@ -33,36 +51,15 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: 7.--事件响应-------------------👇
     
-    
     // MARK: 8.--数据源方法------------------👇
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionsDataModel.count
     }
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell
-    {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        let row = indexPath.row
-        switch row {
-        case 0:
-            cell.detailTextLabel?.text = bookDetail["name"]
-        case 1:
-            cell.detailTextLabel?.text = bookDetail["author"]
-        case 2:
-            cell.detailTextLabel?.text = bookDetail["press"]
-        default:
-            break
-        }
-        
-        return cell
+        return sectionsDataModel[section].cellCount
     }
     
     // MARK: 9.--视图代理方法----------------👇
