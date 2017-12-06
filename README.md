@@ -14,4 +14,4 @@
 
 
 
-本工程基于 [MIT 协议](https://github.com/pmtao/SwitchBetweenCustomToolBarAndTabBar/blob/master/LICENSE) 发布 © 2017 [Singking Soul](https://melerpaine.com)
+本工程基于 [MIT 协议](https://github.com/pmtao/SwitchBetweenCustomToolBarAndTabBar/blob/master/LICENSE) 发布 © 2017 [Sinking Soul](https://melerpaine.com)
