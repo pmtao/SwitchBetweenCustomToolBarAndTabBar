@@ -1,67 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xjE-Bl-t5v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b50-MU-2Se">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="RuL-F9-cGa">
-            <objects>
-                <viewController id="oqZ-tp-phn" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fxG-zu-Gpj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="y3f-Jv-an6"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="4Lg-Wq-pES"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kL2-Ho-oXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1201" y="-561"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="eN0-Ge-vjO">
-            <objects>
-                <viewController id="1i5-xt-K3c" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wR1-w1-Z0i">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2wI-YB-eeL"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="UeI-eP-AW8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5xg-Ww-5mM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="329" y="-562"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="3SU-Zv-2If">
-            <objects>
-                <tabBarController id="xjE-Bl-t5v" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hoi-xz-htz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="YjC-P7-yB9" kind="relationship" relationship="viewControllers" id="uZd-uw-Za6"/>
-                        <segue destination="1i5-xt-K3c" kind="relationship" relationship="viewControllers" id="QFR-au-5SU"/>
-                        <segue destination="oqZ-tp-phn" kind="relationship" relationship="viewControllers" id="gNf-er-Od4"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cqk-a2-d18" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-610" y="-560"/>
-        </scene>
         <!--书籍列表-->
         <scene sceneID="6eN-wq-UBz">
             <objects>
@@ -94,12 +41,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="FyG-ek-fUD" kind="show" identifier="showDetail" id="9fl-Zz-u2g">
-                                        <segue key="commit" inheritsFrom="parent" id="0VK-3R-jpI"/>
-                                        <segue key="preview" inheritsFrom="commit" id="CEV-Ct-9aq"/>
-                                    </segue>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="bookRatingCell" textLabel="iYc-QN-teB" detailTextLabel="wNv-BU-4Si" style="IBUITableViewCellStyleValue1" id="TIF-JY-uRo" customClass="BookRatingCell" customModule="SwitchBetweenCustomToolBarAndTabBar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
@@ -125,12 +66,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <connections>
-                                    <segue destination="pbd-7z-lDr" kind="show" identifier="showReview" id="vgr-MT-bT9">
-                                        <segue key="commit" inheritsFrom="parent" id="941-WV-3pv"/>
-                                        <segue key="preview" inheritsFrom="commit" id="7ga-Gc-2pP"/>
-                                    </segue>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -139,25 +74,20 @@
                             <outlet property="delegate" destination="b50-MU-2Se" id="Ntd-np-DF0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="书籍列表" id="BGp-nO-HaD">
-                        <barButtonItem key="rightBarButtonItem" title="编辑" id="TGF-av-XEw">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="b50-MU-2Se" id="yUd-cB-8Hp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="书籍列表" id="BGp-nO-HaD"/>
                     <connections>
-                        <outlet property="editButton" destination="TGF-av-XEw" id="T4b-Xk-uB0"/>
+                        <segue destination="FyG-ek-fUD" kind="show" identifier="showBookDetail" id="i7D-n1-YFN"/>
+                        <segue destination="pbd-7z-lDr" kind="show" identifier="showBookReview" id="C3X-jU-qg9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xk-4a-o5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="152"/>
+            <point key="canvasLocation" x="335" y="113"/>
         </scene>
         <!--书籍详情-->
         <scene sceneID="yMq-gu-NGc">
             <objects>
-                <tableViewController id="FyG-ek-fUD" customClass="DetailTableViewController" customModule="SwitchBetweenCustomToolBarAndTabBar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="bookDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FyG-ek-fUD" customClass="DetailTableViewController" customModule="SwitchBetweenCustomToolBarAndTabBar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5JF-zz-6MT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,8 +189,7 @@
         <!--书籍评论-->
         <scene sceneID="qEx-ga-bap">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OzS-5U-kbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="pbd-7z-lDr" customClass="ReviewTableViewController" customModule="SwitchBetweenCustomToolBarAndTabBar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="bookReview" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pbd-7z-lDr" customClass="ReviewTableViewController" customModule="SwitchBetweenCustomToolBarAndTabBar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5ER-NX-ILK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,33 +280,9 @@
                         <outlet property="rateLabel" destination="S6f-jQ-pj5" id="43b-RA-kbV"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OzS-5U-kbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740" y="922"/>
         </scene>
-        <!--书籍列表-->
-        <scene sceneID="JcJ-Ps-asE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YjC-P7-yB9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="书籍列表" image="book" id="45D-Fj-AKS"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oub-vc-Ocg">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="b50-MU-2Se" kind="relationship" relationship="rootViewController" id="4Dj-s9-qFt"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rLe-pM-CB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-609" y="152"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="book" width="25" height="19"/>
-    </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="vgr-MT-bT9"/>
-        <segue reference="9fl-Zz-u2g"/>
-    </inferredMetricsTieBreakers>
 </document>

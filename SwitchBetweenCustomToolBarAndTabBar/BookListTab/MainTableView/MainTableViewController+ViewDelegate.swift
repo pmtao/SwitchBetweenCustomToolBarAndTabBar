@@ -15,5 +15,10 @@ extension MainTableViewController {
     {
         return sectionsDataModel[section].headerTitle
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.mainTableVCRowSelected(vc: self,
+                                         tableView: tableView,
+                                         indexPath: indexPath)
+    }
 }

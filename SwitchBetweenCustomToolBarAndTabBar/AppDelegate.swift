@@ -12,10 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var rootViewController: UITabBarController?
+    var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        rootViewController = UITabBarController()
+        appCoordinator = AppCoordinator(with: rootViewController!)
+        appCoordinator?.start()
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
         return true
     }
 

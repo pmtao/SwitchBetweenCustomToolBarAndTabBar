@@ -38,46 +38,27 @@ extension MainTableViewController {
         }
     }
     
-    /// 初始化工具栏
-    func initialToolBar() {
-        toolBarView = ToolBarView.initView() // 初始化工具栏对象
-        setupToolBarFrame() // 对工具栏进行布局
-        // 添加至 TabBar 视图中
-        self.tabBarController?.view.addSubview(toolBarView!)
-        toolBarView?.isHidden = true // 默认隐藏
-        registerToolBarButtonAction() // 注册按钮点击事件
-    }
-    
-    /// 切换显示工具栏
-    func switchToolBarAndTabbar() {
-        if tableView.isEditing {
-            self.tabBarController?.tabBar.isHidden = true // 隐藏 Tab 栏
-            toolBarView?.isHidden = false // 显示工具栏
-        } else {
-            self.tabBarController?.tabBar.isHidden = false // 显示 Tab 栏
-            toolBarView?.isHidden = true // 隐藏工具栏
+    /// 初始化导航栏按钮
+    func initialBarButton() {
+        if shouldShowNavigationItem != nil && shouldShowNavigationItem! {
+            let barButtonItem = UIBarButtonItem(
+                title: "编辑",
+                style: .done,
+                target: self,
+                action: #selector(self.rightBarButtonTapped(_:)))
+            rightBarButtonItem = barButtonItem
         }
-    }
-    
-    /// 对工具栏进行布局
-    func setupToolBarFrame() {
-        var frame = CGRect()
-        // 工具栏布局与 Tabbar 保持一致
-        frame.origin = (self.tabBarController?.tabBar.frame.origin)!
-        frame.size = (self.tabBarController?.tabBar.frame.size)!
-        toolBarView?.frame = frame
     }
     
     /// 切换表格的编辑与浏览状态
     func switchEditMode() {
         if tableView.isEditing {
             self.setEditing(false, animated: true) // 结束编辑模式
-            editButton.title = "编辑"
+            rightBarButtonItem?.title = "编辑"
         } else {
             self.setEditing(true, animated: true) // 进入编辑模式
-            editButton.title = "取消"
+            rightBarButtonItem?.title = "取消"
         }
-        switchToolBarAndTabbar() // 切换显示工具栏
     }
     
     // MARK: 2.--事件注册与监听-------------------👇
@@ -87,17 +68,9 @@ extension MainTableViewController {
         // 监听设备旋转事件
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.updateLayoutWhenOrientationChanged),
+            selector: #selector(self.orientationDidChange),
             name: NSNotification.Name.UIDeviceOrientationDidChange,
             object: nil)
-    }
-    
-    /// 注册工具栏按钮点击事件
-    func registerToolBarButtonAction() {
-        // 删除按钮
-        toolBarView?.deleteButton.addTarget(
-            self, action: #selector(self.deleteToolBarButtonTapped(_:)),
-            for: .touchUpInside)
     }
     
     // MARK: 3.--数据处理-------------------👇
