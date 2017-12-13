@@ -51,3 +51,8 @@ protocol BookReviewHeadCellProtocol {
     var title: String { get }
     var rate: String { get }
 }
+
+protocol BookCommentListCellProtocol {
+    var summary: String { get }
+    var link: String { get } // 页面链接
+}

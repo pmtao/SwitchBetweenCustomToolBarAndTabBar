@@ -1,5 +1,5 @@
 //
-//  TableViewViewModel.swift
+//  BookListViewModel.swift
 //  SwitchBetweenCustomToolBarAndTabBar
 //
 //  Created by 阿涛 on 17-12-2.
@@ -7,14 +7,55 @@
 //
 
 import Foundation
+import RxSwift
 
-struct TableViewViewModel {
+struct BookListViewModel: TableViewDynamicCellDataModel {
+    // MARK: 1.--属性定义----------------👇
+    
+    /// 数据源对象
+    var dynamicTableDataModel: [[BookListCellModelType]] = []
+    /// section 数据对象
+    var sectionsDataModel: [SectionModel] = []
+    let disposeBag = DisposeBag()
+    
+    // MARK: 2.--模型转换方法----------------👇
+    
+    func loadData(handler: @escaping (BookListViewModel) -> Void) {
+        BookCollectionsRepository.collections()
+            .subscribe(onNext: { bookCollections in
+                let dynamicTableDataModel = BookListViewModel
+                    .transformToTableDataModel(model: bookCollections)
+                let sectionsDataModel = BookListViewModel.initialSectionDataModel()
+                var viewModel = BookListViewModel()
+                viewModel.dynamicTableDataModel = dynamicTableDataModel
+                viewModel.sectionsDataModel = sectionsDataModel
+                handler(viewModel)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// 初始化 section 数据模型
+    static func initialSectionDataModel() -> [SectionModel] {
+        let section1 = SectionModel(
+            headerTitle: "想看的书",
+            footerTitle: nil,
+            cellType: .dynamicCell)
+        let section2 = SectionModel(
+            headerTitle: "正在看的书",
+            footerTitle: nil,
+            cellType: .dynamicCell)
+        let section3 = SectionModel(
+            headerTitle: "已看完的书",
+            footerTitle: nil,
+            cellType: .dynamicCell)
+        return [section1, section2, section3]
+    }
     
     /// 构造表格统一的数据模型
     ///
     /// - Parameter model: 原始数据模型
     /// - Returns: 表格数据模型
-    static func getTableDataModel(model: DataModel) -> [[BookListCellModelType]] {
+    static func transformToTableDataModel(model: DataModel) -> [[BookListCellModelType]] {
         var bookWishToRead: [BookListCellModelType] = []
         var bookReading: [BookListCellModelType] = []
         var bookRead: [BookListCellModelType] = []
@@ -22,8 +63,8 @@ struct TableViewViewModel {
             guard let status = BookReadingStatus(rawValue: myBook.status) else {
                 return []
             }
-            let bookInfo = getBookInfo(model: myBook.book)
-            let bookRating = getBookRating(model: myBook.book)
+            let bookInfo = transformToBookInfo(model: myBook.book)
+            let bookRating = transformToBookRating(model: myBook.book)
             switch status {
             case .wish:
                 bookWishToRead.append(bookInfo)
@@ -45,7 +86,7 @@ struct TableViewViewModel {
     ///
     /// - Parameter model: 原始数据子模型
     /// - Returns: 统一的 cell 数据模型
-    static func getBookInfo(model: Book) -> BookListCellModelType {
+    static func transformToBookInfo(model: BookCollections.Book) -> BookListCellModelType {
         var cellModel = BookInfoCellModel()
         cellModel.title = model.title
         cellModel.authors = model.author.reduce("", { $0 == "" ? $1 : $0 + "、" + $1 })
@@ -61,7 +102,7 @@ struct TableViewViewModel {
     ///
     /// - Parameter model: 原始数据子模型
     /// - Returns: 统一的 cell 数据模型
-    static func getBookRating(model: Book) -> BookListCellModelType {
+    static func transformToBookRating(model: BookCollections.Book) -> BookListCellModelType {
         var cellModel = BookRatingCellModel()
         cellModel.average = "评分：" + model.rating.average
         cellModel.numRaters = "评价人数：" + String(model.rating.numRaters)
@@ -70,45 +111,5 @@ struct TableViewViewModel {
         return BookListCellModelType.bookRating(cellModel)
     }
     
-    /// 获取 BookDetailCellModel 数据模型
-    ///
-    /// - Parameter model: BookInfoCellModel 数据模型
-    /// - Returns: BookDetailCellModel 数据模型
-    static func getBookDetail(model: BookInfoCellModel) -> BookDetailCellModel {
-        var cellModel = BookDetailCellModel()
-        cellModel.title = model.title
-        cellModel.authors = model.authors
-        cellModel.publisher = model.publisher
-        return cellModel
-    }
     
-    /// 获取 BookReviewListCellModel 数据模型
-    ///
-    /// - Parameter model: BookReview 数据模型
-    /// - Returns: 书籍评论页需要的评论列表模型
-    static func getBookReviewList(model: BookReview) -> [[BookReviewCellModelType]] {
-        var cellModel: [BookReviewCellModelType] = []
-        for review in model.reviews {
-            var bookReviewListCellModel = BookReviewListCellModel()
-            bookReviewListCellModel.title = review.title
-            bookReviewListCellModel.rate = "评分：" + review.rating.value
-            bookReviewListCellModel.link = review.alt
-            // 转换为 enum 类型
-            let model = BookReviewCellModelType.bookReviewList(bookReviewListCellModel)
-            cellModel.append(model)
-        }
-        return [[], cellModel]
-    }
-    
-    /// 获取 BookReviewHeadCellModel 数据模型
-    ///
-    /// - Parameter model: Book 数据模型
-    /// - Returns: 书籍评论页需要的标题信息
-    static func getBookReviewHead(model: BookRatingCellModel) -> BookReviewHeadCellModel {
-        var cellModel = BookReviewHeadCellModel()
-        cellModel.id = model.id
-        cellModel.title = model.title
-        cellModel.rate = model.average
-        return cellModel
-    }
 }

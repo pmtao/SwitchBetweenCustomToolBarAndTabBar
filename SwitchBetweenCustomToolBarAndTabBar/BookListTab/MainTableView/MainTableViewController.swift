@@ -8,12 +8,17 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController, TableViewDynamicCellDataModel {
-    // MARK: 1.--依赖属性定义----------------👇
-    /// 路由代理
-    var delegate: BookListCoordinator?
-    /// 数据源对象
-    var dynamicTableDataModel: [[BookListCellModelType]] = [] {
+class MainTableViewController: UITableViewController {
+    // MARK: 1.--依赖注入属性定义----------------👇
+
+    /// 是否显示导航栏按钮
+    var shouldShowNavigationItem: Bool?
+    var toolBarView: ToolBarView? // 工具栏视图
+    var tabBar: UITabBar?
+    
+    // MARK: 2.--内部属性定义----------------👇
+    /// ViewModel 模型
+    var bookListViewModel: BookListViewModel = BookListViewModel() {
         didSet {
             if shouldReloadTable {
                 setBackgroundView(status: .loaded)
@@ -21,15 +26,7 @@ class MainTableViewController: UITableViewController, TableViewDynamicCellDataMo
             }
         }
     }
-    /// section 数据对象
-    var sectionsDataModel: [SectionModel] = []
-    /// 是否显示导航栏按钮
-    var shouldShowNavigationItem: Bool?
     
-    // MARK: 2.--内部属性定义----------------👇
-    
-    /// 工具栏视图
-//    var toolBarView: ToolBarView?
     /// 导航栏右侧按钮
     var rightBarButtonItem: UIBarButtonItem? {
         get {
@@ -61,51 +58,46 @@ class MainTableViewController: UITableViewController, TableViewDynamicCellDataMo
     // MARK: 3.--@IBOutlet属性定义-----------👇
     
     
-    // MARK: 3.--视图生命周期----------------👇
+    // MARK: 4.--视图生命周期----------------👇
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        print("MainTableViewController init coder")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialBackgroundView() // 初始化背景视图
-//        initialToolBar() // 初始化工具栏
         initialBarButton() // 初始化导航栏按钮
-        
+        setBackgroundView(status: .loading)
+        toolBarView?.isHidden = true // 默认隐藏工具栏
         tableView.allowsMultipleSelectionDuringEditing = true // 允许编辑模式下多选
-        loadData() // 加载数据
-        setSectionDataModel() // 设置 section 数据模型
+        initialViewModel() // 初始化视图模型
         addObserver() // 注册需要监听的对象
+        print("MainTableViewController viewDidLoad")
     }
     
     /// 设备旋转时重新布局
     @objc func orientationDidChange() {
         print("MainTableViewController updateLayoutWhenOrientationChanged")
-        delegate?.orientationDidChange()
+        setupToolBarFrame() // 对工具栏进行布局
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: 4.--动作响应-------------------👇
+    // MARK: 5.--动作响应-------------------👇
     @objc func rightBarButtonTapped(_ sender: Any?) {
-        delegate?.mainTableVCRightBarButtonTapped(vc: self,
-                                                  isEditing: tableView.isEditing)
+        switchEditMode()
     }
     
-    // MARK: 5.--事件响应-------------------👇
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        let selectedIndexPath = tableView.indexPath(for: cell)!
-        
-        let model = dynamicTableDataModel[selectedIndexPath.section][selectedIndexPath.row]
-        switch model {
-        case let .bookInfo(bookInfo):
-            let detailVC = segue.destination as! DetailTableViewController
-            detailVC.staticTableDataModel = TableViewViewModel.getBookDetail(model: bookInfo)
-        case let .bookRating(bookRating):
-            let reviewVC = segue.destination as! ReviewTableViewController
-            reviewVC.staticTableDataModel =  TableViewViewModel.getBookReviewHead(model: bookRating)
-        }
+    @objc func toolBarDeleteButtonTapped(_ sender: Any?) {
+        deleteSelectedBooks() // 删除选择的书籍
+        switchEditMode()
     }
+    
+    // MARK: 6.--事件响应-------------------👇
+
     
     override func shouldPerformSegue(withIdentifier identifier: String,
                                      sender: Any?)  -> Bool {

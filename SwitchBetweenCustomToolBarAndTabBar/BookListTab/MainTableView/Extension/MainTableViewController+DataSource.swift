@@ -11,12 +11,12 @@ import UIKit
 extension MainTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dynamicTableDataModel.count
+        return bookListViewModel.dynamicTableDataModel.count
     }
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return dynamicTableDataModel[section].count
+        return bookListViewModel.dynamicTableDataModel[section].count
     }
     
     override func tableView(_ tableView: UITableView,
@@ -24,7 +24,7 @@ extension MainTableViewController {
         -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-        let model = dynamicTableDataModel[section][row]
+        let model = bookListViewModel.dynamicTableDataModel[section][row]
         
         switch model {
         case let .bookInfo(bookInfo):

@@ -29,11 +29,13 @@ public enum CellIdentifierType: String {
     case bookInfoCell
     case bookRatingCell
     case bookReviewTitleCell
+    case bookCommentTitleCell
 }
 
 /// Cell nib 文件类型
 public enum CellNibType: String {
     case BookReviewListTableViewCell
+    case BookComentListTableViewCell
 }
 
 /// cell 类型
@@ -57,18 +59,6 @@ enum BookListCellModelType: CellModelType {
 
 /// 书籍评论列表页的评分项 Cell 使用的数据模型类型
 enum BookReviewCellModelType: CellModelType {
-    case bookReviewList(BookReviewListCellModel)
-}
-
-/// Http 请求方法
-public enum HTTPMethod: String {
-    case GET
-    case POST
-}
-
-/// 主机类型
-///
-/// - doubanAPI: 豆瓣 API
-enum HostType: String {
-    case doubanAPI = "https://api.douban.com"
+    case bookReviewList(BookReviewListCellModel) // 书评
+    case bookCommentList(BookCommentListCellModel) // 短评
 }

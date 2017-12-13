@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2XU-BP-n6w">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="X2d-mC-o18">
+            <objects>
+                <tabBarController id="2XU-BP-n6w" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UT1-WV-eme">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="26R-35-SHM" kind="relationship" relationship="viewControllers" id="RWe-at-9K1"/>
+                        <segue destination="Yp2-FT-cXg" kind="relationship" relationship="viewControllers" id="KPD-9i-FUH"/>
+                        <segue destination="l70-C2-4aW" kind="relationship" relationship="viewControllers" id="Z9t-11-kii"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Inc-7u-gkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1558" y="-185"/>
+        </scene>
+        <!--BookList-->
+        <scene sceneID="hkH-ev-n6j">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BookList" id="26R-35-SHM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="书籍列表" image="book" id="lqJ-YG-Ua3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzR-fF-s7j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1791" y="318"/>
+        </scene>
+        <!--Favorites-->
+        <scene sceneID="qqa-mT-jYB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favorites" id="Yp2-FT-cXg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="4oN-4T-34S"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3qF-jl-WRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1541" y="319"/>
+        </scene>
+        <!--Recents-->
+        <scene sceneID="kyU-IL-aUY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recents" id="l70-C2-4aW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="Ra6-gR-4z5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PzH-vC-6Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1324" y="318"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="book" width="25" height="19"/>
+    </resources>
+</document>

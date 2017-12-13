@@ -50,3 +50,9 @@ struct BookReviewHeadCellModel: BookReviewHeadCellProtocol {
     var title: String = ""
     var rate: String = ""
 }
+
+struct BookCommentListCellModel: BookCommentListCellProtocol {
+    var identifier = CellIdentifierType.bookCommentTitleCell
+    var summary: String = ""
+    var link: String = "" // 页面链接
+}

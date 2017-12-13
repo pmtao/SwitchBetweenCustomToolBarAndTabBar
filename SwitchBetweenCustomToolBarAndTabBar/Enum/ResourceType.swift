@@ -8,6 +8,13 @@
 
 import Foundation
 
+/// 主机类型
+///
+/// - doubanAPI: 豆瓣 API
+enum HostType: String {
+    case doubanAPI = "https://api.douban.com"
+}
+
 public enum StoryboardType: String {
     case Main
     case BookList
@@ -22,6 +29,11 @@ public enum ViewControllorID: String {
     case bookReview
 }
 
+public enum SegueType: String {
+    case showBookDetail
+    case showBookReview
+}
+
 public enum TabName: String {
     case bookList = "书籍列表"
 }
@@ -29,3 +41,4 @@ public enum TabName: String {
 public enum ImageName: String {
     case book
 }
+

@@ -59,6 +59,35 @@ extension MainTableViewController {
             self.setEditing(true, animated: true) // 进入编辑模式
             rightBarButtonItem?.title = "取消"
         }
+        let isEditing = tableView.isEditing
+        toolBarView?.isHidden = shouldHideToolBar(isEditing: isEditing)
+        tabBar?.isHidden = shouldHideTabBar(isEditing: isEditing)
+    }
+    
+    func shouldHideToolBar(isEditing: Bool) -> Bool {
+        if isEditing {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    /// 确定是否需要隐藏 Tab 栏。
+    func shouldHideTabBar(isEditing: Bool) -> Bool {
+        if isEditing {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    /// 对工具栏进行布局
+    func setupToolBarFrame() {
+        var frame = CGRect()
+        // 工具栏布局与 Tabbar 保持一致
+        frame.origin = (tabBar?.frame.origin)!
+        frame.size = (tabBar?.frame.size)!
+        toolBarView?.frame = frame
     }
     
     // MARK: 2.--事件注册与监听-------------------👇
@@ -71,38 +100,23 @@ extension MainTableViewController {
             selector: #selector(self.orientationDidChange),
             name: NSNotification.Name.UIDeviceOrientationDidChange,
             object: nil)
+        
+        // 注册工具栏按钮点击
+        toolBarView?.deleteButton.addTarget(
+            self,
+            action: #selector(self.toolBarDeleteButtonTapped(_:)),
+            for: .touchUpInside)
     }
     
     // MARK: 3.--数据处理-------------------👇
     
-    /// 设置 section 数据模型
-    func setSectionDataModel() {
-        let section1 = SectionModel(
-            headerTitle: "想看的书",
-            footerTitle: nil,
-            cellType: .dynamicCell)
-        let section2 = SectionModel(
-            headerTitle: "正在看的书",
-            footerTitle: nil,
-            cellType: .dynamicCell)
-        let section3 = SectionModel(
-            headerTitle: "已看完的书",
-            footerTitle: nil,
-            cellType: .dynamicCell)
-        sectionsDataModel.append(section1)
-        sectionsDataModel.append(section2)
-        sectionsDataModel.append(section3)
-    }
     
-    /// 加载初始数据
-    func loadData() {
-        setBackgroundView(status: .loading)
-        let request = BookRequest(userName: "pmtao", status: "", start: 0, count: 40)
-        request.send { data in
-            guard let dataModel = data else { return }
-            let tableDataModel = TableViewViewModel.getTableDataModel(model: dataModel)
+    
+    /// 初始化视图模型
+    func initialViewModel() {
+        bookListViewModel.loadData { bookListViewModel in
             self.shouldReloadTable = true
-            self.dynamicTableDataModel = tableDataModel
+            self.bookListViewModel = bookListViewModel
         }
     }
     
@@ -111,13 +125,12 @@ extension MainTableViewController {
         let indexPaths = selectedBooksIndexs.sorted()
         shouldReloadTable = false
         for indexPath in Array(indexPaths.reversed()) {
-            dynamicTableDataModel[indexPath.section].remove(at: indexPath.row)
+            bookListViewModel.dynamicTableDataModel[indexPath.section].remove(at: indexPath.row)
         }
         tableView.beginUpdates()
         tableView.deleteRows(at: indexPaths.map { IndexPath(row: $0.row, section: $0.section) } ,
                              with: .fade)
         tableView.endUpdates()
-        switchEditMode()
     }
     
 }

@@ -32,18 +32,18 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noj-qx-MIS">
-                    <rect key="frame" x="170" y="7.5" width="35" height="33"/>
+                    <rect key="frame" x="170" y="8" width="35" height="33"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="删除"/>
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="noj-qx-MIS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="C0R-Ta-TPA"/>
                 <constraint firstItem="BkT-m9-q2Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HbC-ll-c4E"/>
                 <constraint firstItem="vbe-vo-96X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IUX-Q0-iak"/>
                 <constraint firstItem="noj-qx-MIS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Q9j-oh-bqc"/>
                 <constraint firstItem="BkT-m9-q2Q" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="SGW-Ja-Co0"/>
                 <constraint firstItem="vbe-vo-96X" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="hIo-lQ-mjL"/>
+                <constraint firstItem="noj-qx-MIS" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="ii8-og-WqJ"/>
                 <constraint firstItem="BkT-m9-q2Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o2b-go-uWU"/>
                 <constraint firstItem="vbe-vo-96X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="osD-G1-Ttm"/>
                 <constraint firstItem="vbe-vo-96X" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="wre-8s-LEb"/>

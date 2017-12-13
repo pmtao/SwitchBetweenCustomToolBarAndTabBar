@@ -75,14 +75,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="书籍列表" id="BGp-nO-HaD"/>
-                    <connections>
-                        <segue destination="FyG-ek-fUD" kind="show" identifier="showBookDetail" id="i7D-n1-YFN"/>
-                        <segue destination="pbd-7z-lDr" kind="show" identifier="showBookReview" id="C3X-jU-qg9"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xk-4a-o5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="113"/>
+            <point key="canvasLocation" x="672.79999999999995" y="112.89355322338831"/>
         </scene>
         <!--书籍详情-->
         <scene sceneID="yMq-gu-NGc">
@@ -184,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4f-Qh-VAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="922"/>
+            <point key="canvasLocation" x="358" y="895"/>
         </scene>
         <!--书籍评论-->
         <scene sceneID="qEx-ga-bap">
@@ -268,6 +264,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="NZc-az-2FT">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="2ih-yX-1Zz" style="IBUITableViewCellStyleDefault" id="Mo4-5l-KIw">
+                                        <rect key="frame" x="0.0" y="239" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mo4-5l-KIw" id="94q-Gd-NyE">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2ih-yX-1Zz">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="pbd-7z-lDr" id="kdi-d8-lgR"/>
@@ -282,7 +299,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzS-5U-kbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="922"/>
+            <point key="canvasLocation" x="1017" y="895"/>
         </scene>
     </scenes>
 </document>
